@@ -1,5 +1,5 @@
 {
-  "name": "aula17",
+  "name": "projeto-agenda",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^5.1.0",
     "core-js": "^3.33.3",
@@ -23,7 +24,8 @@
     "helmet": "^7.1.0",
     "mongoose": "^8.0.3",
     "regenerator-runtime": "^0.14.0",
-    "style-loader": "^3.3.3"
+    "style-loader": "^3.3.3",
+    "validator": "^13.11.0"
   },
   "description": "",
   "devDependencies": {
