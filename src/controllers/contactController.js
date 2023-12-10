@@ -11,12 +11,12 @@ exports.create = async (req, res) => {
     
     if (contact.errors.length > 0) {
       req.flash('errors', contact.errors);
-      req.session.save(() => res.redirect('/contact'));
+      req.session.save(() => res.redirect('back'));
       return;
     };
 
     req.flash('success', 'Contact successfully created!');
-    req.session.save(() => res.redirect(`contact/${contact.contact._id}`));
+    req.session.save(() => res.redirect(`/contact/${contact.contact._id}`))
     return;
   } catch (e) {
     console.log(e);
@@ -24,11 +24,32 @@ exports.create = async (req, res) => {
   }
 };
 
-exports.update = async (req, res) => {
+exports.editIndex = async (req, res) => {
   if (!req.params.id) return res.render('404');
 
   const contact = await Contact.searchById(req.params.id);
   if (!contact) return res.render('404');
 
   res.render('contact', { contact });
+};
+
+exports.edit = async (req, res) => {
+  try {
+    if (!req.params.id) return res.render('404');
+    const contact = new Contact(req.body);
+    await contact.edit(req.params.id);
+  
+    if (contact.errors.length > 0) {
+      req.flash('errors', contact.errors);
+      req.session.save(() => res.redirect('back'));
+      return;
+    };
+  
+    req.flash('success', 'Contact successfully edited!');
+    req.session.save(() => res.redirect(`/contact/${contact.contact._id}`))
+    return;
+  } catch (e) {
+    console.log(e);
+    return res.render('404');
+  };
 };

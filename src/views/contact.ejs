@@ -8,11 +8,15 @@
     <div class="col-lg-8 my-3">
 
       <h1 class="text-center">Contact list</h1>
-      <p class="text-center lead">Create or update your contact down below.</p>
+      <p class="text-center lead">Create or edit your contact down below.</p>
 
       <%- include('includes/messages') %>
 
+      <% if (contact._id) { %>
+      <form action="/contact/edit/<%= contact._id %>" method="POST">
+      <% } else { %>
       <form action="/contact/create" method="POST">
+      <% } %>
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="mb-3">
           <label>First name</label>
