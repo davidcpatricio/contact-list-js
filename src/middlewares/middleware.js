@@ -5,10 +5,6 @@ exports.globalMiddleware = (req, res, next) => {
   next();
 };
 
-exports.anotherMiddleware = (req, res, next) => {
-  next();
-};
-
 exports.checkCsrfError = (err, req, res, next) => {
   if (err) {
     return res.render('404');

@@ -13,9 +13,9 @@
       <%- include('includes/messages') %>
 
       <% if (contact._id) { %>
-      <form action="/contact/edit/<%= contact._id %>" method="POST">
+      <form class="form-update" action="/contact/edit/<%= contact._id %>" method="POST">
       <% } else { %>
-      <form action="/contact/create" method="POST">
+      <form class="form-create" action="/contact/create" method="POST">
       <% } %>
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <div class="mb-3">
